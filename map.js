@@ -19,8 +19,12 @@ const map = new mapboxgl.Map({
 
 
 function getCoords(station) {
-  const point = new mapboxgl.LngLat(+station.Long, +station.Lat);
+  const lon = Number(station.Long);
+  const lat = Number(station.Lat);
+
+  const point = new mapboxgl.LngLat(lon, lat);
   const { x, y } = map.project(point);
+
   return { cx: x, cy: y };
 }
 
@@ -62,7 +66,9 @@ map.on('load', async () => {
   const jsonData = await d3.json(jsonurl);
   console.log('Loaded JSON Data:', jsonData);
 
-  const stations = jsonData.data.stations.filter(d => d.Long && d.Lat);
+  const stations = jsonData.data.stations.filter(d =>
+        Number.isFinite(Number(d.Long)) && Number.isFinite(Number(d.Lat))
+    );
   console.log('Stations Array:', stations);
 
 //   const stations = jsonData.data.stations;
