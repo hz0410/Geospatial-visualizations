@@ -7,4 +7,22 @@ body {
   box-sizing: border-box;
   margin: auto;
   padding: 1em;
+  background: #f7f7f5;
+  color: #1f2933;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+p {
+  margin: 0.25em 0 0;
+  color: #4b5563;
 }
