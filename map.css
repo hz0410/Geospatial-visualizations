@@ -1,56 +1,41 @@
+html,
+body {
+  margin: 0;
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+}
+
 header {
   display: flex;
   gap: 1em;
   align-items: baseline;
-  margin-bottom: 1em;
 }
 
-.time-filter {
+header label {
   margin-left: auto;
-  min-width: 18rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.25em 0.75em;
-  align-items: center;
-  font-weight: 600;
-}
-
-#time-slider {
-  width: 100%;
 }
 
 #selected-time,
 #any-time {
-  grid-column: 2;
   display: block;
-  min-height: 1.5em;
-  font-weight: 400;
 }
 
 #any-time {
-  color: #6b7280;
-}
-
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+  color: gray;
+  font-style: italic;
 }
 
 #map {
-  position: relative;
   width: 100%;
-  height: 72vh;
-  min-height: 520px;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+  height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
 }
 
 #map svg {
   position: absolute;
-  inset: 0;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -63,13 +48,14 @@ main {
   --color-arrivals: darkorange;
   --color: color-mix(
     in oklch,
-    var(--color-departures) calc(100% * var(--departure-ratio, 0.5)),
+    var(--color-departures) calc(100% * var(--departure-ratio)),
     var(--color-arrivals)
   );
+  fill: var(--color);
+  background: var(--color);
 }
 
 #map circle {
-  fill: var(--color);
   fill-opacity: 0.6;
   stroke: white;
   stroke-width: 1;
@@ -78,37 +64,24 @@ main {
 
 .legend {
   display: flex;
-  align-items: center;
-  gap: 0.75em;
+  gap: 1px;
   margin-block: 1em;
 }
 
 .legend > div {
-  background: var(--color);
+  flex: 1;
+  padding: 0.5em 1em;
   color: white;
-  padding: 0.35em 0.8em;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
-@media (max-width: 720px) {
-  header {
-    flex-direction: column;
-    align-items: stretch;
-  }
+.legend > div:nth-child(1) {
+  text-align: left;
+}
 
-  .time-filter {
-    margin-left: 0;
-    min-width: 0;
-  }
+.legend > div:nth-child(2) {
+  text-align: center;
+}
 
-  #map {
-    height: 65vh;
-    min-height: 420px;
-  }
-
-  .legend {
-    flex-wrap: wrap;
-  }
+.legend > div:nth-child(3) {
+  text-align: right;
 }
