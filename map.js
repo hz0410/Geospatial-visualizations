@@ -5,6 +5,8 @@ console.log('Mapbox GL JS Loaded:', mapboxgl);
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuMTI0MyIsImEiOiJjbXA2NW1veWkxZGp6MnFvaXhtNGJueDN2In0.89HZphX7NnNWu-YbuwAthg';
 
+const svg = d3.select('#map').select('svg');
+
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v12',
@@ -13,6 +15,13 @@ const map = new mapboxgl.Map({
   minZoom: 5,
   maxZoom: 18,
 });
+
+
+function getCoords(station) {
+  const point = new mapboxgl.LngLat(+station.Long, +station.Lat);
+  const { x, y } = map.project(point);
+  return { cx: x, cy: y };
+}
 
 map.on('load', async () => {
   map.addSource('boston_route', {
@@ -54,4 +63,31 @@ map.on('load', async () => {
 
   const stations = jsonData.data.stations;
   console.log('Stations Array:', stations);
+
+//   const stations = jsonData.data.stations;
+
+  const circles = svg
+    .selectAll('circle')
+    .data(stations)
+    .enter()
+    .append('circle')
+    .attr('r', 5)
+    .attr('fill', 'steelblue')
+    .attr('stroke', 'white')
+    .attr('stroke-width', 1)
+    .attr('opacity', 0.8);
+
+  function updatePositions() {
+    circles
+      .attr('cx', d => getCoords(d).cx)
+      .attr('cy', d => getCoords(d).cy);
+  }
+
+  updatePositions();
+
+  map.on('move', updatePositions);
+  map.on('zoom', updatePositions);
+  map.on('resize', updatePositions);
+  map.on('moveend', updatePositions);
+
 });
