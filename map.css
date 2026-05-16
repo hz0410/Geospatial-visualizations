@@ -43,3 +43,11 @@ h1 {
   pointer-events: none;
   z-index: 1;
 }
+
+
+#map svg circle {
+  fill: steelblue;
+  stroke: white;
+  stroke-width: 1;
+  opacity: 0.8;
+}
