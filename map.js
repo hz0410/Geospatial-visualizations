@@ -98,7 +98,7 @@ map.on('load', async () => {
       .attr('cy', d => getCoords(d).cy);
   }
 
-  updatePositions();
+//   updatePositions();
 
   map.on('move', updatePositions);
   map.on('zoom', updatePositions);
