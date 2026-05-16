@@ -9,7 +9,7 @@ const BLUEBIKES_STATIONS_URL = 'https://dsc106.com/labs/lab07/data/bluebikes-sta
 const BLUEBIKES_TRAFFIC_URL = 'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv';
 
 // Set your Mapbox access token here
-mapboxgl.accessToken = 'YOUR_ACCESS_TOKEN_HERE';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuMTI0MyIsImEiOiJjbXA2NW1veWkxZGp6MnFvaXhtNGJueDN2In0.89HZphX7NnNWu-YbuwAthg';
 
 // Initialize the map
 const map = new mapboxgl.Map({
