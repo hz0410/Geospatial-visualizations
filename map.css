@@ -1,23 +1,28 @@
 html,
 body {
   margin: 0;
-  padding: 5;
+  padding: 0;
   height: 100%;
   width: 100%;
+}
+
+body {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: 20px 0;
 }
 
 #map {
-  width: 100%; /* Adjust width to your desired size */
-  height: 100%; /* Adjust height to your desired size */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
-  border-radius: 8px; /* Optional: rounded corners */
-}
-
-#map {
-  position: relative; /* needed for svg positioning */
+  position: relative;
+  width: 90vw;
+  height: 75vh;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 #map svg {
@@ -26,6 +31,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* allow map interactions */
-  z-index: 1; /* put SVG above the map */
+  pointer-events: none;
+  z-index: 1;
 }
